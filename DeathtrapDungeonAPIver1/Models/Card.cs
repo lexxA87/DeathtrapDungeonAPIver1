@@ -15,6 +15,6 @@ namespace DeathtrapDungeonAPIver1.Models
         [Column(TypeName = "NVARCHAR")]
         public string Description { get; set; } = string.Empty;
 
-        public List<int>? GoToNumber { get; set; }
+        public int[]? GoToNumber { get; set; }
     }
 }
