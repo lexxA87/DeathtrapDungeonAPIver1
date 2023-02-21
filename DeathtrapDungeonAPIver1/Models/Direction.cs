@@ -14,6 +14,9 @@ namespace DeathtrapDungeonAPIver1.Models
         public string Description { get; set; } = string.Empty;
 
         [Required]
+        public int NumberCard { get; set; }
+
+        [Required]
         public int CardId { get; set; }
     }
 }
