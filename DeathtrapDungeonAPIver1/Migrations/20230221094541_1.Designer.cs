@@ -4,6 +4,7 @@ using DeathtrapDungeonAPIver1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeathtrapDungeonAPIver1.Migrations
 {
     [DbContext(typeof(APIDbContext))]
-    partial class APIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230221094541_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +52,9 @@ namespace DeathtrapDungeonAPIver1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("NumberCard")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CardId");
@@ -58,11 +64,13 @@ namespace DeathtrapDungeonAPIver1.Migrations
 
             modelBuilder.Entity("DeathtrapDungeonAPIver1.Models.Direction", b =>
                 {
-                    b.HasOne("DeathtrapDungeonAPIver1.Models.Card", null)
+                    b.HasOne("DeathtrapDungeonAPIver1.Models.Card", "Card")
                         .WithMany("Directions")
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Card");
                 });
 
             modelBuilder.Entity("DeathtrapDungeonAPIver1.Models.Card", b =>

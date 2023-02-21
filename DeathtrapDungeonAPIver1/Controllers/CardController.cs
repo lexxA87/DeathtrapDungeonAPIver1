@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using DeathtrapDungeonAPIver1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DeathtrapDungeonAPIver1.Models;
 
 namespace DeathtrapDungeonAPIver1.Controllers
 {
@@ -24,7 +19,7 @@ namespace DeathtrapDungeonAPIver1.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Card>>> GetCards()
         {
-            return await _context.Cards.ToListAsync();
+            return await _context.Cards.Include(c => c.Directions).ToListAsync();
         }
 
         // GET: api/Card/5
@@ -32,6 +27,7 @@ namespace DeathtrapDungeonAPIver1.Controllers
         public async Task<ActionResult<Card>> GetCard(int id)
         {
             var card = await _context.Cards.FindAsync(id);
+            _context.Directions.Where(d => d.CardId == id).Load();
 
             if (card == null)
             {
