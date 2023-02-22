@@ -6,9 +6,6 @@ namespace DeathtrapDungeonAPIver1.Models
     {
         [Key]
         public Guid Id { get; set; }
-        // public int Id { get; set; }
-        // public Guid DirectionId { get; set; }
-
 
         [Required]
         public string Description { get; set; } = string.Empty;

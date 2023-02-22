@@ -10,6 +10,7 @@ namespace DeathtrapDungeonAPIver1.Models
 
         public DbSet<Card> Cards { get; set; }
 
+        // Conerter from "1;2;3" in DB to [1, 2, 3] in out json
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
